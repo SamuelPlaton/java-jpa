@@ -2,6 +2,7 @@ package domain;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Set;
 
 @Entity
 @Table(name = "LIVRE")
@@ -9,6 +10,7 @@ public class Livre implements Serializable{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "ID")
     private int id;
     @Column(name = "TITRE", nullable = false)
     private String titre;
