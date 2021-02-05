@@ -1,9 +1,8 @@
-import domain.Client;
-import domain.Emprunt;
-import domain.Livre;
+import domain.books.Client;
+import domain.books.Emprunt;
+import domain.books.Livre;
 
 import javax.persistence.*;
-import java.util.List;
 
 public class TestBibliotheque {
     public static void main(String[] args) {
@@ -17,9 +16,13 @@ public class TestBibliotheque {
         Emprunt emprunt = em.find(Emprunt.class, 1);
         System.out.println(emprunt.toStringComplete());
 
-        // Retrieve an Client and his Emprunts[]
+        // Retrieve a Client and his Emprunts[]
         Client client = em.find(Client.class, 1);
         System.out.println(client);
+
+        // Retrieve a Livre and his Emprunts[]
+        Livre livre = em.find(Livre.class, 1);
+        System.out.println(livre.toStringComplete());
         
         // Commit
         em.getTransaction().commit();

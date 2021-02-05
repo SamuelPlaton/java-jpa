@@ -1,4 +1,4 @@
-package domain;
+package domain.books;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -16,8 +16,19 @@ public class Livre implements Serializable{
     private String titre;
     @Column(name = "AUTEUR", nullable = false)
     private String auteur;
+    @ManyToMany
+    @JoinTable(name = "COMPO",
+            joinColumns = @JoinColumn(name = "ID_LIV", referencedColumnName = "ID"),
+            inverseJoinColumns = @JoinColumn(name = "ID_EMP", referencedColumnName = "ID"))
+    private Set<Emprunt> emprunts;
 
     public Livre() { }
+
+    public Livre(String titre, String auteur, Set<Emprunt> emprunts) {
+        this.titre = titre;
+        this.auteur = auteur;
+        this.emprunts = emprunts;
+    }
 
     public Livre(String titre, String auteur) {
         this.titre = titre;
@@ -38,6 +49,15 @@ public class Livre implements Serializable{
                 "id=" + id +
                 ", titre='" + titre + '\'' +
                 ", auteur='" + auteur + '\'' +
+                '}';
+    }
+
+    public String toStringComplete() {
+        return "Livre{" +
+                "id=" + id +
+                ", titre='" + titre + '\'' +
+                ", auteur='" + auteur + '\'' +
+                ", emprunts='" + emprunts + '\'' +
                 '}';
     }
 }

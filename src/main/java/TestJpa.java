@@ -1,4 +1,4 @@
-import domain.Livre;
+import domain.books.Livre;
 
 import javax.persistence.*;
 import java.util.List;
